@@ -18,13 +18,13 @@ function Emitter() {
 const emitter = new Emitter();
 
 emitter.options = {
-    image: {
-        uploadURL: "None",
-        dropzoneOptions: {}
-    },
+  image: {
+    uploadURL: "None",
+    dropzoneOptions: {}
+  },
 
-    hideModules: {},
-    paragraphSeparator: "div"
+  hideModules: {},
+  paragraphSeparator: "div"
 }
 
 export default emitter;
