@@ -27,7 +27,7 @@
         },
         methods: {
             insertAnchor() {
-                this.$emit("exec", "insertHTML", `<a name='${this.url}'>##${this.url}##</a>`);
+                this.$emit("exec", "insertHTML", `<a href='#${this.url}'>##${this.url}##</a>`);
                 this.$parent.closeDashboard();
                 this.url = "";
             }
