@@ -1,14 +1,16 @@
 <template lang="pug">
-.wrapper
-  wysiwyg(v-model="msg")
+    .wrapper
+        wysiwyg(v-model="msg")
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: `<p>Welcome to <b>vue-wysiwyg</b>!</p>
+    import {PRODUCTION} from "./constants";
+
+    export default {
+        name: 'app',
+        data() {
+            return {
+                msg: process.env.NODE_ENV === PRODUCTION ? '' : `<p>Welcome to <b>vue-wysiwyg</b>!</p>
       <p>
         <br>
         <img src="https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg">
@@ -46,39 +48,40 @@ export default {
         </table>
       </p>
       `
+            }
+        }
     }
-  }
-}
 </script>
 
 <style>
-* {
-  margin:0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.wrapper {
-  max-width: 800px;
-  margin: 10em auto;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    /*.wrapper {*/
+        /*max-width: 800px;*/
+        /*margin: 10em auto;*/
+    /*}*/
 
-body {
-  font-family: -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Oxygen-Sans,
-                Ubuntu,
-                Cantarell,
-                "Helvetica Neue",
-                sans-serif;
-}
+    #wysiwyg {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+
+    body {
+        font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        "Helvetica Neue",
+        sans-serif;
+    }
 </style>

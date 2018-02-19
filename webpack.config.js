@@ -52,7 +52,7 @@ module.exports = {
     devtool: '#eval-source-map'
 };
 
-
+if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#inline-source-map';
     module.exports.plugins = (module.exports.plugins || []).concat([
         new ExtractTextPlugin({
@@ -73,4 +73,4 @@ module.exports = {
             minimize: true
         }),
     ]);
-
+}

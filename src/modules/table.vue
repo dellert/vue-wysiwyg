@@ -9,7 +9,7 @@
             <input type="number" style="width: 60px"  min="2" v-model="cols">
         </label>
 
-        <button type="submit">Insert</button>
+        <button type="submit">Вставить</button>
     </form>
 </template>
 

@@ -1,17 +1,15 @@
 <template>
-    <form @submit.prevent="insertLink">
+    <div>
         <label>
             URL
             <input ref="url" type="text" style="width: 40%" v-model="url">
         </label>
         <label>
-            Link Title
+            Текст
             <input type="text" style="width: 40%" v-model="title">
         </label>
-
-        <button type="submit">Insert</button>
-    </form>
-
+        <button type="button" @click="insertLink">Вставить</button>
+    </div>
 </template>
 
 <script>
