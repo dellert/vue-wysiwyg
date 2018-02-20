@@ -78,9 +78,10 @@
             },
 
             modules: function () {
-                if (this.mergedOptions.hideModules)
-                    return modules.filter(m => !this.mergedOptions.hideModules[m.title]);
-                return modules;
+                return modules.filter(
+                    m => this.mergedOptions.hideModules === undefined
+                        || !this.mergedOptions.hideModules[m.title]
+                ).concat(this.mergedOptions.customModules);
             },
 
             btnsWithDashboards: function () {
@@ -175,6 +176,7 @@
             this.$refs.content.addEventListener("focus", this.onFocus);
             this.$refs.content.addEventListener("input", this.onInput);
             this.$refs.content.addEventListener("blur", this.onContentBlur, {capture: true});
+            this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
 
             window.addEventListener('scroll', function () {
                 const xNAV = document.querySelector(".editr--toolbar");
@@ -258,43 +260,56 @@
                     position absolute
                     width 1px
 
-        .dashboard
-            width 100%
-            position absolute
-            top 32px
-            left 0
-            text-align left
-            padding 0.5rem 1rem
-            background alpha(white, 0.95)
-            border 1px solid $offwhite
+    .dashboard
+        width 100%
+        position absolute
+        top 32px
+        left 0
+        text-align left
+        padding 8px 16px
+        background alpha(white, 0.95)
+        border 1px solid $offwhite
 
     .editr--content
         min-height 150px
-        padding 0.75rem 0.5rem
+        padding 12px 8px 16px 8px
         line-height 1.33
         font-family inherit
         color inherit
+        overflow-y auto
 
-        &[contenteditable=true]:empty:before
-            content: attr(placeholder);
-            color alpha(black, 0.3)
-            display: block;
-        /* For Firefox */
+            &[contenteditable=true]:empty:before
+                content: attr(placeholder);
+                color alpha(black, 0.3)
+                display: block;
+            /* For Firefox */
 
-        img
-            max-width 100%
+            img
+                max-width 100%
 
         table
             width 100%
+            border-collapse collapse
 
-            th
-                text-align left
+                th
+                    text-align left
+
+            th, td
+                border 1px solid #dddddd
+                padding 2px
 
         &:focus
             outline 0
 
-        ul, ol
-            li
-                list-style-position: inside;
+            ul, ol
+                li
+                    list-style-position: inside;
 
+    @media screen and (max-width 320px)
+        .editr--toolbar
+            a
+                margin 0 2px
+
+            a.vw-btn-separator
+                display none
 </style>

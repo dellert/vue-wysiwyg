@@ -44,25 +44,26 @@ export default {
 			this.showDashboard = true;
 		},
 
-    exec (...args) {
-      this.$parent.exec(...args)
+    exec () {
+      this.$parent.exec.apply(null, arguments)
     },
 
-		onBtnClick($event, action, arg) {
-			if (
-				this.module.render &&
+		onBtnClick ($event) {
+			if (this.module.action !== undefined)
+				this.exec.apply(null, this.module.action);
+
+			else if (this.module.customAction !== undefined) {
+				this.module.customAction(bus.utils).forEach(a => this.exec.apply(null, a));
+			}
+
+			else if (
+				this.module.render !== undefined &&
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
 				bus.emit(`${this.uid}_${this.showDashboard ? "show" : "hide"}_dashboard_${this.module.title}`);
 				return;
 			}
-
-			action = action || this.module.action;
-			arg = arg || this.module.actionArgs;
-
-			if (action)
-				this.exec(action, arg, false);
 		}
 	}
 }
