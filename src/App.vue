@@ -10,7 +10,7 @@
         name: 'app',
         data() {
             return {
-                msg: process.env.NODE_ENV === PRODUCTION ? decodeURIComponent(document.getElementById('wysiwyg_data').value) : `<p>Welcome to <b>vue-wysiwyg</b>!</p>
+                msg: process.env.NODE_ENV === PRODUCTION ? decodeURIComponent(document.getElementById('wysiwyg_data').value).replace(/\+/g, ' ') : `<p>Welcome to <b>vue-wysiwyg</b>!</p>
       <p>
         <br>
         <img src="https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg">

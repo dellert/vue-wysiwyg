@@ -176,6 +176,15 @@
             this.$refs.content.addEventListener("input", this.onInput);
             this.$refs.content.addEventListener("blur", this.onContentBlur, {capture: true});
 
+            window.addEventListener('scroll', function () {
+                const xNAV = document.querySelector(".editr--toolbar");
+
+                if (window.scrollY > 500) {
+                    xNAV.classList.add("scrolling");
+                } else {
+                    xNAV.classList.remove("scrolling");
+                }
+            }, false);
         },
 
         beforeDestroy() {
@@ -205,6 +214,10 @@
         position relative
         display flex
         height $buttonHeight
+
+        &.scrolling
+            position: fixed
+            top: 0
 
         a
             display inline-block
